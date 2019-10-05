@@ -1689,8 +1689,8 @@ var PS = {};
       };
   };
   var main = (function () {
-      var setup = Data_Semigroup.append(Node_Yargs_Setup.semigroupYargsSetup)(Node_Yargs_Setup.usage("$0 -w Word1 -w Word2"))(Node_Yargs_Setup.example("$0 -w Hello -w World")("Say hello!"));
-      return Node_Yargs_Applicative.runY(setup)(Control_Apply.apply(Node_Yargs_Applicative.applyT)(Data_Functor.map(Node_Yargs_Applicative.functorY)(app)(Node_Yargs_Applicative.yarg(Node_Yargs_Applicative.argStrings)("w")([ "word" ])(new Data_Maybe.Just("A word"))(new Data_Either.Right("At least one word is required"))(false)))(Node_Yargs_Applicative.flag("r")([  ])(new Data_Maybe.Just("Reverse the words"))));
+      var setup = Data_Semigroup.append(Node_Yargs_Setup.semigroupYargsSetup)(Node_Yargs_Setup.usage("$0 --from Word1 -w Word2"))(Node_Yargs_Setup.example("$0 --from Hello -w World")("Say hello!"));
+      return Node_Yargs_Applicative.runY(setup)(Control_Apply.apply(Node_Yargs_Applicative.applyT)(Data_Functor.map(Node_Yargs_Applicative.functorY)(app)(Node_Yargs_Applicative.yarg(Node_Yargs_Applicative.argStrings)("from")([ "word" ])(new Data_Maybe.Just("A word"))(new Data_Either.Right("At least one word is required"))(false)))(Node_Yargs_Applicative.flag("r")([  ])(new Data_Maybe.Just("Reverse the words"))));
   })();
   exports["app"] = app;
   exports["main"] = main;

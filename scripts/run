@@ -1,1 +1,2 @@
 pulp build --optimise > repl.js
+node repl.js $@
