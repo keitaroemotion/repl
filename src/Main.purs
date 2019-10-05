@@ -16,7 +16,7 @@ args = List.drop 2 $ List.fromFoldable argv
 main :: Effect Unit
 main = do
     case args of
-        "install"   : rest     -> log "aaa"
-        List.Nil               -> log "help"
-        _                      -> do
-            log $ "Unknown arguments: " <> List.intercalate " " args
+        "install": rest -> log "aaa"
+        List.Nil        -> log "help"
+        _               -> do
+                               log $ "Unknown arguments: " <> List.intercalate " " args
