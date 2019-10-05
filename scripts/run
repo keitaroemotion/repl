@@ -1,4 +1,1 @@
-./scripts/build
-#pulp run $@
-pulp browserify > sample.js
-node sample.js $@
+pulp build --optimise > repl.js

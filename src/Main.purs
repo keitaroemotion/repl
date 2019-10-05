@@ -1,21 +1,23 @@
 module Main where
 
-import Effect         (Effect)
-import Effect.Aff     (Aff)
-import Effect.Console (log)
-import Data.List      (List, (:))
-import Data.List      as List
 import Prelude
+import Data.Array (reverse)
+import Data.Either (Either(..))
+import Data.Maybe (Maybe(..))
+import Effect (Effect)
+import Effect.Console (logShow)
+import Node.Yargs.Applicative (flag, yarg, runY)
+import Node.Yargs.Setup (example, usage)
 
-foreign import argv :: Array String
-
-args :: List String
-args = List.drop 2 $ List.fromFoldable argv
+app :: Array String -> Boolean -> Effect Unit
+app [] _     = pure unit
+app ss false = logShow ss
+app ss true  = logShow (reverse ss)
 
 main :: Effect Unit
 main = do
-    case args of
-        "install": rest -> log "aaa"
-        List.Nil        -> log "help"
-        _               -> do
-                               log $ "Unknown arguments: " <> List.intercalate " " args
+  let setup = usage "$0 -w Word1 -w Word2"
+              <> example "$0 -w Hello -w World" "Say hello!"
+
+  runY setup $ app <$> yarg "w" ["word"] (Just "A word") (Right "At least one word is required") false
+                   <*> flag "r" []       (Just "Reverse the words")
