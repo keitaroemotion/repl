@@ -14,10 +14,18 @@ app [] _     = pure unit
 app ss false = logShow ss
 app ss true  = logShow (reverse ss)
 
+-- $0 ... application name
+
 main :: Effect Unit
 main = do
-  let setup = usage "$0 --from Word1 -w Word2"
-              <> example "$0 --from Hello -w World" "Say hello!"
+  let setup = usage "$0 --from [/path/to/rename] --to [new filename]"
+              <> example "$0 --from [/path/to/rename] --to [new filename]" ""
 
-  runY setup $ app <$> yarg "from" ["word"] (Just "A word") (Right "At least one word is required") false
-                   <*> flag "r" []       (Just "Reverse the words")
+  runY setup $ app <$> yarg 
+                           "from"
+                           ["to"]
+                           (Just  "A to"                             )
+                           (Right "At least one argument is required") 
+                           false
+
+                   <*> flag "r" []          (Just "Reverse the words")
