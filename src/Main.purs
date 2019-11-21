@@ -20,6 +20,7 @@ main :: Effect Unit
 main = do
   let setup = usage "$0 --from [/path/to/rename] --to [new filename]"
               <> example "$0 --from [/path/to/rename] --to [new filename]" ""
+  log "aaa"
 
   runY setup $ app <$> yarg 
                            "from"
