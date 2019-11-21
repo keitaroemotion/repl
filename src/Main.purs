@@ -5,7 +5,7 @@ import Data.Array             (reverse)
 import Data.Either            (Either(..))
 import Data.Maybe             (Maybe(..))
 import Effect                 (Effect)
-import Effect.Console         (logShow)
+import Effect.Console         (logShow, log)
 import Node.Yargs.Applicative (flag, yarg, runY)
 import Node.Yargs.Setup       (example, usage)
 
